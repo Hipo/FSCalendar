@@ -65,7 +65,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.collectionView.frame = CGRectMake(0, self.fs_height*0.1, self.fs_width, self.fs_height*0.9);
+    self.collectionView.frame = CGRectMake(0, 0.0, self.fs_width, self.fs_height);
 }
 
 - (void)dealloc
@@ -189,8 +189,29 @@
             break;
         }
     }
-    text = usesUpperCase ? text.uppercaseString : text;
-    cell.titleLabel.text = text;
+    NSArray *textComponents = [text componentsSeparatedByString:@" "];
+    if (textComponents.count < 2) {
+        text = usesUpperCase ? text.uppercaseString : text;
+        cell.titleLabel.text = text;
+    } else {
+        NSMutableAttributedString *attrText = nil;
+        for (NSInteger idx = 0; idx < textComponents.count; idx++) {
+            NSString *aText = textComponents[idx];
+            if (idx == 0) {
+                attrText = [[NSMutableAttributedString alloc] initWithString:aText];
+            } else if (idx == textComponents.count - 1) {
+                [attrText appendAttributedString:
+                 [[NSAttributedString alloc]
+                  initWithString:aText
+                  attributes:@{NSFontAttributeName: appearance.headerTitleSecondFont}]
+                ];
+            } else {
+                [attrText appendAttributedString:[[NSAttributedString alloc] initWithString:aText]];
+            }
+        }
+        cell.titleLabel.attributedText = attrText;
+    }
+
     [cell setNeedsLayout];
 }
 

@@ -62,6 +62,7 @@ typedef NS_OPTIONS(NSUInteger, FSCalendarCaseOptions) {
  * The font of the month text.
  */
 @property (strong, nonatomic) UIFont   *headerTitleFont;
+@property (strong, nonatomic) UIFont   *headerTitleSecondFont;
 
 /**
  * The offset of the day text from default position.
