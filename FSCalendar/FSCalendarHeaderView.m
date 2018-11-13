@@ -202,11 +202,11 @@
             } else if (idx == textComponents.count - 1) {
                 [attrText appendAttributedString:
                  [[NSAttributedString alloc]
-                  initWithString:aText
+                  initWithString:[NSString stringWithFormat:@" %@", aText]
                   attributes:@{NSFontAttributeName: appearance.headerTitleSecondFont}]
                 ];
             } else {
-                [attrText appendAttributedString:[[NSAttributedString alloc] initWithString:aText]];
+                [attrText appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@", aText]]];
             }
         }
         cell.titleLabel.attributedText = attrText;

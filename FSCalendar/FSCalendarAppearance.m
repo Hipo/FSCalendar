@@ -40,6 +40,7 @@
         _headerDateFormat = @"MMMM yyyy";
         _headerMinimumDissolvedAlpha = 0.2;
         _weekdayTextColor = FSCalendarStandardTitleTextColor;
+        _weekendTextColor = FSCalendarStandardTitleTextColor;
         _caseOptions = FSCalendarCaseOptionsHeaderUsesDefaultCase|FSCalendarCaseOptionsWeekdayUsesDefaultCase;
         
         _backgroundColors = [NSMutableDictionary dictionaryWithCapacity:5];
@@ -399,6 +400,14 @@
 {
     if (![_weekdayTextColor isEqual:weekdayTextColor]) {
         _weekdayTextColor = weekdayTextColor;
+        [self.calendar configureAppearance];
+    }
+}
+
+- (void)setWeekendTextColor:(UIColor *)weekendTextColor
+{
+    if (![_weekendTextColor isEqual:weekendTextColor]) {
+        _weekendTextColor = weekendTextColor;
         [self.calendar configureAppearance];
     }
 }
