@@ -42,6 +42,9 @@ class FSCalendarScopeExampleViewController: UIViewController, UITableViewDataSou
         self.view.addGestureRecognizer(self.scopeGesture)
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
         self.calendar.scope = .week
+        self.calendar.firstWeekday = 2;
+        self.calendar.appearance.caseOptions = [.weekdayUsesSingleUpperCase]
+        self.calendar.appearance.weekendTextColor = UIColor.yellow;
         
         // For UITest
         self.calendar.accessibilityIdentifier = "calendar"

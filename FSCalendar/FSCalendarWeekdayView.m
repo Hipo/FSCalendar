@@ -108,14 +108,19 @@
 
         label.font = self.calendar.appearance.weekdayFont;
         
-        BOOL isWeekend = i == 0 || i == 6;
+        BOOL isWeekend = index == 0 || index == 6;
         if (isWeekend) {
             label.textColor = self.calendar.appearance.weekendTextColor;
         } else {
             label.textColor = self.calendar.appearance.weekdayTextColor;
         }
-
-        label.text = useDefaultWeekdayCase ? weekdaySymbols[index] : [weekdaySymbols[index] uppercaseString];
+        
+        NSString *weekday = weekdaySymbols[index];
+        if (useVeryShortWeekdaySymbols) {
+            label.text = weekday;
+        } else {
+            label.text = useDefaultWeekdayCase ? weekday : [weekday uppercaseString];
+        }
     }
 
 }
